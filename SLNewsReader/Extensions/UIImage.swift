@@ -9,7 +9,7 @@ import UIKit
 extension UIImage {
     func maskWithColor(color: UIColor) -> UIImage? {
         let maskImage = cgImage!
-        
+        //
         let width = size.width
         let height = size.height
         let bounds = CGRect(x: 0, y: 0, width: width, height: height)
