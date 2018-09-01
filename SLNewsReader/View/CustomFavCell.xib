@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="cellFav" id="7O9-EU-7R0" customClass="CustomFavCell" customModule="SLNewsReader" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="187" height="223"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="187" height="223"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <view contentMode="scaleAspectFit" translatesAutoresizingMaskIntoConstraints="NO" id="AF5-ay-3B7" userLabel="Container View">
+                        <rect key="frame" x="0.0" y="0.0" width="187" height="222"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="1000" text="Caption" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7Ye-ls-SfT">
+                                <rect key="frame" x="4" y="4" width="179" height="16.5"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" relation="lessThanOrEqual" constant="40" id="CUi-vc-a53"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="12"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="kWA-HO-wcH">
+                                <rect key="frame" x="0.0" y="20.5" width="187" height="201.5"/>
+                                <color key="backgroundColor" red="0.047143883999999997" green="0.36116248369999998" blue="0.163305968" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" selected="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rch-xS-61R">
+                                <rect key="frame" x="143" y="182" width="40" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="40" id="WT3-9P-bbD"/>
+                                    <constraint firstAttribute="width" secondItem="rch-xS-61R" secondAttribute="height" multiplier="1:1" id="WXy-MO-Svx"/>
+                                </constraints>
+                                <state key="normal" image="Favourite"/>
+                                <connections>
+                                    <action selector="buttonDidClick:" destination="7O9-EU-7R0" eventType="touchUpInside" id="7vi-3C-ttV"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" red="0.047143883999999997" green="0.36116248369999998" blue="0.163305968" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="rch-xS-61R" firstAttribute="trailing" secondItem="kWA-HO-wcH" secondAttribute="trailing" constant="-4" id="19Z-MV-mRU"/>
+                            <constraint firstItem="kWA-HO-wcH" firstAttribute="top" secondItem="7Ye-ls-SfT" secondAttribute="bottom" id="96E-YX-sPY"/>
+                            <constraint firstAttribute="trailing" secondItem="7Ye-ls-SfT" secondAttribute="trailing" constant="4" id="Mrg-mP-GwD"/>
+                            <constraint firstItem="kWA-HO-wcH" firstAttribute="leading" secondItem="AF5-ay-3B7" secondAttribute="leading" id="eFC-Av-xk8"/>
+                            <constraint firstItem="rch-xS-61R" firstAttribute="bottom" secondItem="kWA-HO-wcH" secondAttribute="bottom" id="eMJ-gY-Wbz"/>
+                            <constraint firstAttribute="trailing" secondItem="kWA-HO-wcH" secondAttribute="trailing" id="gM3-bm-awm"/>
+                            <constraint firstAttribute="bottom" secondItem="kWA-HO-wcH" secondAttribute="bottom" id="kmp-SN-30r"/>
+                            <constraint firstItem="7Ye-ls-SfT" firstAttribute="top" secondItem="AF5-ay-3B7" secondAttribute="top" constant="4" id="pzK-JE-PsP"/>
+                            <constraint firstItem="7Ye-ls-SfT" firstAttribute="leading" secondItem="AF5-ay-3B7" secondAttribute="leading" constant="4" id="rae-s6-nRU"/>
+                        </constraints>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                <real key="value" value="5"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
+                    </view>
+                </subviews>
+            </view>
+            <constraints>
+                <constraint firstItem="AF5-ay-3B7" firstAttribute="centerY" secondItem="7O9-EU-7R0" secondAttribute="centerY" id="LZW-oX-oAZ"/>
+                <constraint firstItem="AF5-ay-3B7" firstAttribute="top" secondItem="7O9-EU-7R0" secondAttribute="top" id="Nge-k8-KkW"/>
+                <constraint firstItem="AF5-ay-3B7" firstAttribute="centerX" secondItem="7O9-EU-7R0" secondAttribute="centerX" id="dUY-P4-LqB"/>
+                <constraint firstItem="AF5-ay-3B7" firstAttribute="leading" secondItem="7O9-EU-7R0" secondAttribute="leading" id="taE-Cb-633"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="JA2-YL-Ya6"/>
+            <size key="customSize" width="187" height="223"/>
+            <connections>
+                <outlet property="btnFavourite" destination="rch-xS-61R" id="DBa-CM-R9r"/>
+                <outlet property="captionLabel" destination="7Ye-ls-SfT" id="UD7-vf-NGR"/>
+                <outlet property="containerView" destination="AF5-ay-3B7" id="ly7-em-G4p"/>
+                <outlet property="imageView" destination="kWA-HO-wcH" id="S0I-iS-eNb"/>
+            </connections>
+            <point key="canvasLocation" x="-38" y="32"/>
+        </collectionViewCell>
+    </objects>
+    <resources>
+        <image name="Favourite" width="30" height="30"/>
+    </resources>
+</document>

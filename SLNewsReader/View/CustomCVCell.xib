@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="cellSummary" id="7eg-dG-M77" customClass="CustomCVCell" customModule="SLNewsReader" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="187" height="223"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="187" height="223"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <view contentMode="scaleAspectFit" translatesAutoresizingMaskIntoConstraints="NO" id="R4l-2W-GCN" userLabel="Container View">
+                        <rect key="frame" x="0.0" y="0.0" width="187" height="222"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="1000" text="Caption" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KpY-oL-WhP">
+                                <rect key="frame" x="4" y="4" width="179" height="16.5"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" relation="lessThanOrEqual" constant="40" id="0pe-gI-X1u"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="12"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="m59-7l-bYj">
+                                <rect key="frame" x="0.0" y="20.5" width="187" height="201.5"/>
+                                <color key="backgroundColor" red="0.047143883999999997" green="0.36116248369999998" blue="0.163305968" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ehd-VL-uD0">
+                                <rect key="frame" x="143" y="182" width="40" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="ehd-VL-uD0" secondAttribute="height" multiplier="1:1" id="7lI-CE-tMT"/>
+                                    <constraint firstAttribute="width" constant="40" id="WCt-hH-2Ne"/>
+                                </constraints>
+                                <state key="normal" image="Favourite"/>
+                                <connections>
+                                    <action selector="buttonDidClick:" destination="7eg-dG-M77" eventType="touchUpInside" id="MDd-CY-skd"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" red="0.047143883999999997" green="0.36116248369999998" blue="0.163305968" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="m59-7l-bYj" firstAttribute="leading" secondItem="R4l-2W-GCN" secondAttribute="leading" id="2Ag-Jh-wE9"/>
+                            <constraint firstAttribute="trailing" secondItem="KpY-oL-WhP" secondAttribute="trailing" constant="4" id="4wX-Q8-pdd"/>
+                            <constraint firstItem="m59-7l-bYj" firstAttribute="top" secondItem="KpY-oL-WhP" secondAttribute="bottom" id="9WP-lf-6cv"/>
+                            <constraint firstItem="ehd-VL-uD0" firstAttribute="trailing" secondItem="m59-7l-bYj" secondAttribute="trailing" constant="-4" id="F00-Tf-X8a"/>
+                            <constraint firstAttribute="bottom" secondItem="m59-7l-bYj" secondAttribute="bottom" id="TzS-Zz-ULv"/>
+                            <constraint firstItem="KpY-oL-WhP" firstAttribute="top" secondItem="R4l-2W-GCN" secondAttribute="top" constant="4" id="ahf-4o-cIz"/>
+                            <constraint firstItem="ehd-VL-uD0" firstAttribute="bottom" secondItem="m59-7l-bYj" secondAttribute="bottom" id="mMy-xA-jex"/>
+                            <constraint firstItem="KpY-oL-WhP" firstAttribute="leading" secondItem="R4l-2W-GCN" secondAttribute="leading" constant="4" id="rsg-97-hed"/>
+                            <constraint firstAttribute="trailing" secondItem="m59-7l-bYj" secondAttribute="trailing" id="wSY-BN-XvB"/>
+                        </constraints>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                <real key="value" value="5"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
+                    </view>
+                </subviews>
+            </view>
+            <constraints>
+                <constraint firstItem="R4l-2W-GCN" firstAttribute="top" secondItem="7eg-dG-M77" secondAttribute="top" id="1iX-W7-wdg"/>
+                <constraint firstItem="R4l-2W-GCN" firstAttribute="leading" secondItem="7eg-dG-M77" secondAttribute="leading" id="6rN-A4-zSX"/>
+                <constraint firstItem="R4l-2W-GCN" firstAttribute="centerY" secondItem="7eg-dG-M77" secondAttribute="centerY" id="AY4-oc-So6"/>
+                <constraint firstItem="R4l-2W-GCN" firstAttribute="centerX" secondItem="7eg-dG-M77" secondAttribute="centerX" id="Z5h-dS-yOO"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="ZC5-A0-Cpo"/>
+            <size key="customSize" width="187" height="223"/>
+            <connections>
+                <outlet property="btnFavourite" destination="ehd-VL-uD0" id="VNB-mM-pk1"/>
+                <outlet property="captionLabel" destination="KpY-oL-WhP" id="rDd-Vf-S1U"/>
+                <outlet property="containerView" destination="R4l-2W-GCN" id="gaW-0X-XGi"/>
+                <outlet property="imageView" destination="m59-7l-bYj" id="nhd-6u-VZZ"/>
+            </connections>
+            <point key="canvasLocation" x="-294" y="-37"/>
+        </collectionViewCell>
+    </objects>
+    <resources>
+        <image name="Favourite" width="30" height="30"/>
+    </resources>
+</document>
