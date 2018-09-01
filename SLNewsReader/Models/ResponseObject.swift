@@ -54,8 +54,13 @@ struct ResponseObject {
   var author: String
   var url: String
   var source: Source
-
-  init?(dictionary: NSDictionary) {
+    
+    init?() {
+     self.init(urlToImg: BLANK, publishAt: BLANK, title: BLANK, description: BLANK, author: BLANK, url: BLANK, sourceData: Source.init(dictionary: [:])!)
+     return
+    }
+    
+    init?(dictionary: NSDictionary) {
     guard let urlToImage = dictionary["urlToImage"],
           let publishedAt = dictionary["publishedAt"],
           let title = dictionary["title"],

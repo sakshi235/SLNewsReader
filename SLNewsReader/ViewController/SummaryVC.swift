@@ -11,7 +11,6 @@ import Alamofire
 import SwiftyJSON
 import Kingfisher
 import RealmSwift
-
 // Model definition
 class NewsData: Object {
     @objc dynamic var urlToImage = ""
@@ -119,6 +118,12 @@ class SummaryVC: UIViewController {
                     self.cvSummary.reloadData()
                 }
             }
+            else{
+                self.cvSummary.isHidden = true
+                let alert = UIAlertController(title: "Oops!", message: "Could not fetch data.Try after sometime!", preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
+                self.present(alert, animated: true)
+            }
         }
         
     }
@@ -132,9 +137,27 @@ extension SummaryVC : UITabBarDelegate{
             reuseIdentifier = StringConstants.cellReuseItentifier.rawValue
             self.navigationItem.title = StringConstants.tabOneHeader.rawValue
         case 2:
-            var arrData = self.getInfoById()
-            
+            let arrData = self.getInfoById()
+            if arrData.count == 0{
             self.getAPIContent(isFavourite: true)
+            }
+            else{
+                self.arrFav.removeAll()
+                arrData.forEach { (obj) in
+                    var resData = ResponseObject.init()
+                    resData?.author = obj.author
+                    resData?.urlToImage = obj.urlToImage
+                    resData?.publishedAt = obj.publishedAt
+                    resData?.title = obj.title
+                    resData?.url = obj.url
+                    resData?.description = obj.descriptionData
+                    resData?.author = obj.author
+                    resData?.source.id = obj.source?.id ?? " "
+                    resData?.source.name = obj.source?.name ?? " "
+                    self.arrFav.append(resData!)
+                }
+                self.cvSummary.reloadData()
+            }
             reuseIdentifier = StringConstants.cellReuseItentifier2.rawValue
             self.navigationItem.title = StringConstants.tabTwoHeader.rawValue
         default:
@@ -171,8 +194,13 @@ extension SummaryVC : UICollectionViewDataSource{
             cell.imageView.kf.setImage(with: URL(string: objData.urlToImage))
             cell.btnFavourite.isSelected = true
             cell.buttonDidClickBlock = {(button,cell)  in
-            button.isSelected = !button.isSelected
+            button.isSelected = false
             if !button.isSelected{
+                /*if let index = self.arrFav.index(where: { (obj) -> Bool in
+                   return obj.source.id == objData.source.id
+                }){
+                    self.arrFav.remove(at: index)
+                }*/
                 self.arrFav.remove(at: indexPath.item)
                 self.cvSummary.reloadData()
             }
@@ -188,11 +216,11 @@ extension SummaryVC : PinterestLayoutDelegate {
     
     // 1. Returns the photo height
     func collectionView(_ collectionView: UICollectionView, heightForPhotoAtIndexPath indexPath:IndexPath) -> CGFloat {
-        return CGSize.init(width: 150, height: 200).height //photos[indexPath.item].image.size.height
+        return CGSize.init(width: 150, height: 200).height 
     }
     
 }
-//MARK: - Insert into database
+//MARK: - Database methods
 
 extension SummaryVC{
     func insertDataWithObject(obj:ResponseObject) -> Void {
@@ -216,8 +244,5 @@ extension SummaryVC{
         let realm = try! Realm()
         let arrData = realm.objects(NewsData.self)
         return arrData
-    }
-    func removeData(dataObj:ResponseObject) -> Void {
-        
     }
 }
