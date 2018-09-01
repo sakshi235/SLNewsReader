@@ -106,6 +106,7 @@ class SummaryVC: UIViewController {
                         let resObj = ResponseObject.init(dictionary: dic)!
                         if isFavourite{
                             self.arrFav.append(resObj)
+//                            self.insertDataWithObject(obj: resObj)
                         }
                         else{
                         self.arrRes.append(resObj)
@@ -137,7 +138,7 @@ extension SummaryVC : UITabBarDelegate{
             reuseIdentifier = StringConstants.cellReuseItentifier.rawValue
             self.navigationItem.title = StringConstants.tabOneHeader.rawValue
         case 2:
-            let arrData = self.getInfoById()
+            /*let arrData = self.getInfoById()
             if arrData.count == 0{
             self.getAPIContent(isFavourite: true)
             }
@@ -155,9 +156,9 @@ extension SummaryVC : UITabBarDelegate{
                     resData?.source.id = obj.source?.id ?? " "
                     resData?.source.name = obj.source?.name ?? " "
                     self.arrFav.append(resData!)
-                }
-                self.cvSummary.reloadData()
-            }
+                }*/
+                self.getAPIContent(isFavourite: true)
+//            }
             reuseIdentifier = StringConstants.cellReuseItentifier2.rawValue
             self.navigationItem.title = StringConstants.tabTwoHeader.rawValue
         default:
@@ -216,7 +217,7 @@ extension SummaryVC : PinterestLayoutDelegate {
     
     // 1. Returns the photo height
     func collectionView(_ collectionView: UICollectionView, heightForPhotoAtIndexPath indexPath:IndexPath) -> CGFloat {
-        return CGSize.init(width: 150, height: 200).height 
+        return CGSize.init(width: 150, height: 200).height
     }
     
 }
