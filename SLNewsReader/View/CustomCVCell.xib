@@ -36,7 +36,7 @@
                                 <rect key="frame" x="0.0" y="20.5" width="187" height="201.5"/>
                                 <color key="backgroundColor" red="0.047143883999999997" green="0.36116248369999998" blue="0.163305968" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ehd-VL-uD0">
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ehd-VL-uD0">
                                 <rect key="frame" x="143" y="182" width="40" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="ehd-VL-uD0" secondAttribute="height" multiplier="1:1" id="7lI-CE-tMT"/>

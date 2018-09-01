@@ -26,7 +26,6 @@
 		81B0CE63213A8BD300C01A70 /* CustomFavCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81B0CE61213A8BD300C01A70 /* CustomFavCell.swift */; };
 		81B0CE64213A8BD300C01A70 /* CustomFavCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 81B0CE62213A8BD300C01A70 /* CustomFavCell.xib */; };
 		81B0CE67213A914700C01A70 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81B0CE66213A914700C01A70 /* Constants.swift */; };
-		81E10E89213AA360007E99E0 /* NewsData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81E10E88213AA360007E99E0 /* NewsData.swift */; };
 		AC11DC2D430E81E33732BE5A /* Pods_SLNewsReaderTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E0CBFCC542F921B6FF32B4DD /* Pods_SLNewsReaderTests.framework */; };
 /* End PBXBuildFile section */
 
@@ -88,7 +87,6 @@
 		81B0CE61213A8BD300C01A70 /* CustomFavCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomFavCell.swift; sourceTree = "<group>"; };
 		81B0CE62213A8BD300C01A70 /* CustomFavCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CustomFavCell.xib; sourceTree = "<group>"; };
 		81B0CE66213A914700C01A70 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
-		81E10E88213AA360007E99E0 /* NewsData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsData.swift; sourceTree = "<group>"; };
 		834AC883FCA063657B5ECC38 /* Pods-SLNewsReader.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SLNewsReader.release.xcconfig"; path = "Pods/Target Support Files/Pods-SLNewsReader/Pods-SLNewsReader.release.xcconfig"; sourceTree = "<group>"; };
 		AAA62AE9F075B04C859492A0 /* Pods-SLNewsReaderTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SLNewsReaderTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SLNewsReaderTests/Pods-SLNewsReaderTests.debug.xcconfig"; sourceTree = "<group>"; };
 		AC7BF71CCBE9891662699EB2 /* Pods_SLNewsReader.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SLNewsReader.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -238,7 +236,6 @@
 			isa = PBXGroup;
 			children = (
 				812A78832139C0C000644AA8 /* ResponseObject.swift */,
-				81E10E88213AA360007E99E0 /* NewsData.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -486,7 +483,6 @@
 				812A787D2139B6D500644AA8 /* CustomCVCell.swift in Sources */,
 				812A78812139BFCF00644AA8 /* PinterestLayout.swift in Sources */,
 				81B0CE67213A914700C01A70 /* Constants.swift in Sources */,
-				81E10E89213AA360007E99E0 /* NewsData.swift in Sources */,
 				812A78092138574D00644AA8 /* SummaryVC.swift in Sources */,
 				812A77CE2138481700644AA8 /* ViewController.swift in Sources */,
 				812A77CC2138481700644AA8 /* AppDelegate.swift in Sources */,

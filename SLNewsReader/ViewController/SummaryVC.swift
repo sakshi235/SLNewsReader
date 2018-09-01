@@ -10,7 +10,24 @@ import UIKit
 import Alamofire
 import SwiftyJSON
 import Kingfisher
+import RealmSwift
 
+// Model definition
+class NewsData: Object {
+    @objc dynamic var urlToImage = ""
+    @objc dynamic var publishedAt = ""
+    @objc dynamic var title = ""
+    @objc dynamic var descriptionData = ""
+    @objc dynamic var author = ""
+    @objc dynamic var url = ""
+    @objc dynamic var source:SourceData?
+    
+}
+class SourceData: Object {
+    @objc dynamic var id = ""
+    @objc dynamic var name = ""
+
+}
 
 enum StringConstants: String {
     case cellReuseItentifier = "cellSummary"
@@ -25,6 +42,8 @@ class SummaryVC: UIViewController {
     @IBOutlet weak var tabBar: UITabBar!
     var reuseIdentifier = StringConstants.cellReuseItentifier.rawValue
     var arrRes = [ResponseObject]()
+    var arrFav = [ResponseObject]()
+
     private let refreshControl = UIRefreshControl()
 
     override func viewDidLoad() {
@@ -50,11 +69,16 @@ class SummaryVC: UIViewController {
         //Initial Set up
         self.initialSetUp()
         //Fetching data
-        self.getAPIContent()
+        self.getAPIContent(isFavourite: false)
     }
     @objc private func refreshWeatherData(_ sender: Any) {
-        // Fetch Weather Data
-        self.getAPIContent()
+        // Fetch Data
+        switch tabBar.selectedItem?.tag {
+        case 1:
+            self.getAPIContent(isFavourite: false)
+        default:
+            break
+        }
     }
    
     func initialSetUp() -> Void {
@@ -69,22 +93,30 @@ class SummaryVC: UIViewController {
         }
 
     }
-    func getAPIContent() -> Void {
-        Alamofire.request(EVERYTHING_DOMAIN).responseJSON { (responseData) -> Void in
+    func getAPIContent(isFavourite:Bool) -> Void {
+        let url = isFavourite == true ? EVERYTHING_DOMAIN : TOP_HEADLINES
+        print(url)
+        Alamofire.request(url).responseJSON { (responseData) -> Void in
             self.refreshControl.endRefreshing()
             if((responseData.result.value) != nil) {
                 let swiftyJsonVar = JSON(responseData.result.value!)
                 if let resData = swiftyJsonVar["articles"].arrayObject {
-                    self.arrRes.removeAll()
+                    isFavourite == true ? self.arrFav.removeAll() : self.arrRes.removeAll()
                     resData.forEach({ (data) in
                         let dic = data as! NSDictionary
-                        self.arrRes.append(ResponseObject.init(dictionary: dic)!)
+                        let resObj = ResponseObject.init(dictionary: dic)!
+                        if isFavourite{
+                            self.arrFav.append(resObj)
+                        }
+                        else{
+                        self.arrRes.append(resObj)
+                        }
                     })
                 }
-                if self.arrRes.count > 0 {
+                if self.arrRes.count > 0 || self.arrFav.count > 0{
                     self.cvSummary.delegate = self
                     self.cvSummary.dataSource = self
-                    print(self.arrRes.count)
+                    self.cvSummary.reloadData()
                 }
             }
         }
@@ -96,15 +128,18 @@ extension SummaryVC : UITabBarDelegate{
     func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {
         switch item.tag {
         case 1:
+            self.getAPIContent(isFavourite: false)
             reuseIdentifier = StringConstants.cellReuseItentifier.rawValue
             self.navigationItem.title = StringConstants.tabOneHeader.rawValue
         case 2:
+            var arrData = self.getInfoById()
+            
+            self.getAPIContent(isFavourite: true)
             reuseIdentifier = StringConstants.cellReuseItentifier2.rawValue
             self.navigationItem.title = StringConstants.tabTwoHeader.rawValue
         default:
             break
         }
-        cvSummary.reloadData()
     }
 }
 //MARK:-  Collection View Delegate
@@ -118,26 +153,33 @@ extension SummaryVC : UICollectionViewDelegate{
 //MARK:-  Collection View Datasource
 extension SummaryVC : UICollectionViewDataSource{
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return self.arrRes.count
+        return  tabBar.selectedItem?.tag == 1 ? self.arrRes.count : self.arrFav.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-       
         switch tabBar.selectedItem?.tag {
         case 1:
             let cell:CustomCVCell  = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! CustomCVCell
             let objData  = self.arrRes[indexPath.item]
             cell.captionLabel.text = objData.title
             cell.imageView.kf.setImage(with: URL(string: objData.urlToImage))
-            cell.buttonDidClickBlock = {(button,cell)  in
-//            self.addContent(responseData: objData)
-//            print(self.getStoredContent())
-
-            }
             return cell
-        default:
+        case 2:
          let cell:CustomFavCell  = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! CustomFavCell
+           let objData  = self.arrFav[indexPath.item]
+            cell.captionLabel.text = objData.title
+            cell.imageView.kf.setImage(with: URL(string: objData.urlToImage))
+            cell.btnFavourite.isSelected = true
+            cell.buttonDidClickBlock = {(button,cell)  in
+            button.isSelected = !button.isSelected
+            if !button.isSelected{
+                self.arrFav.remove(at: indexPath.item)
+                self.cvSummary.reloadData()
+            }
+         }
          return cell
+        default:
+          return UICollectionViewCell()
         }
     }
 }
@@ -149,4 +191,33 @@ extension SummaryVC : PinterestLayoutDelegate {
         return CGSize.init(width: 150, height: 200).height //photos[indexPath.item].image.size.height
     }
     
+}
+//MARK: - Insert into database
+
+extension SummaryVC{
+    func insertDataWithObject(obj:ResponseObject) -> Void {
+        let configuration = Realm.Configuration(encryptionKey: nil)
+        let realm = try! Realm(configuration: configuration)
+        let data = NewsData()
+        data.author = obj.author
+        data.urlToImage = obj.urlToImage
+        data.publishedAt = obj.publishedAt
+        data.title = obj.title
+        data.url = obj.url
+        data.descriptionData = obj.description
+        data.author = obj.author
+        data.source?.id = obj.source.id
+        data.source?.name = obj.source.name
+        try! realm.write {
+            realm.add(data)
+        }
+    }
+     func getInfoById() -> Results<NewsData> {
+        let realm = try! Realm()
+        let arrData = realm.objects(NewsData.self)
+        return arrData
+    }
+    func removeData(dataObj:ResponseObject) -> Void {
+        
+    }
 }

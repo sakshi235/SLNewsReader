@@ -9,7 +9,6 @@
 import UIKit
 
 class CustomFavCell: UICollectionViewCell {
-    @IBOutlet weak var commentLabel: UILabel!
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var containerView: UIView!
     @IBOutlet weak var captionLabel: UILabel!
@@ -20,10 +19,11 @@ class CustomFavCell: UICollectionViewCell {
         super.awakeFromNib()
         containerView.layer.cornerRadius = 6
         containerView.layer.masksToBounds = true
+        btnFavourite.setImage(#imageLiteral(resourceName: "Favourite"), for: .selected)
+
     }
     
     @IBAction func buttonDidClick(_ sender: UIButton) {
-        sender.isSelected = !sender.isSelected
         buttonDidClickBlock(self,sender)
     }
 }

@@ -9,7 +9,6 @@
 import UIKit
 
 class CustomCVCell: UICollectionViewCell {
-    @IBOutlet weak var commentLabel: UILabel!
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var containerView: UIView!
     @IBOutlet weak var captionLabel: UILabel!
@@ -20,8 +19,8 @@ class CustomCVCell: UICollectionViewCell {
         super.awakeFromNib()
         containerView.layer.cornerRadius = 6
         containerView.layer.masksToBounds = true
-        btnFavourite.setImage(#imageLiteral(resourceName: "Favourite").maskWithColor(color: UIColor.white), for: .normal)
-        btnFavourite.setImage(#imageLiteral(resourceName: "Favourite"), for: .selected)
+//        btnFavourite.setImage(#imageLiteral(resourceName: "Favourite").maskWithColor(color: UIColor.white), for: .normal)
+//        btnFavourite.setImage(#imageLiteral(resourceName: "Favourite"), for: .selected)
     }
 
     @IBAction func buttonDidClick(_ sender: UIButton) {
